@@ -1,0 +1,21 @@
+.videoarriba {
+  height: 286px;
+  width: 450px;
+  padding: 0px;
+}
+
+.videoarriba:hover {
+  border-style: dashed;
+}
+
+#videocentral {
+  margin-left: 300px;
+  height: 572px;
+  width: 900px;
+}
+
+#reloj {
+  text-align: center;
+  border-style: outset;
+  border-color: lightblue;
+}
