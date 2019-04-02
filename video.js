@@ -16,6 +16,8 @@ function main ()
 
   timer = null;
 
+  min = 0;
+
   video1.onmouseover = () => {
     video1.muted = false;
   }
@@ -64,21 +66,85 @@ function main ()
     video3ON = true;
   }
 
+  function añadirMinuto(str,min) {
+    str = Number(str) - 60;
+    min += 1;
+    if (str < 10) {
+      reloj.innerHTML = min + " : 0" + str;
+    } else {
+      reloj.innerHTML = min + " : " + str;
+    }
+  }
+
+  function cronometro (str,min) {
+    if (Number(str)>=60) {
+      str = Number(str) - 60;
+      min += 1;
+      if (str < 10) {
+        reloj.innerHTML = min + " : 0" + str;
+      } else {
+        reloj.innerHTML = min + " : " + str;
+      }
+      if (Number(str) >= 60) {
+        str = Number(str) - 60;
+        min += 1;
+        if (str < 10) {
+          reloj.innerHTML = min + " : 0" + str;
+        } else {
+          reloj.innerHTML = min + " : " + str;
+        }
+        if (Number(str) >=60) {
+          str = Number(str) - 60;
+          min += 1;
+          if (str < 10) {
+            reloj.innerHTML = min + " : 0" + str;
+          } else {
+            reloj.innerHTML = min + " : " + str;
+          }
+          if (Number(str) >= 60) {
+            str = Number(str) - 60;
+            min += 1;
+            if (str < 10) {
+              reloj.innerHTML = min + " : 0" + str;
+            } else {
+              reloj.innerHTML = min + " : " + str;
+            }
+            if (Number(str) >= 60) {
+              str = Number(str) - 60;
+              min += 1;
+              if (str < 10) {
+                reloj.innerHTML = min + " : 0" + str;
+              } else {
+                reloj.innerHTML = min + " : " + str;
+              }
+            }
+          }
+        }
+      }
+    } else {
+      reloj.innerHTML = str;
+    }
+  }
+
   if (!timer) {
     timer = setInterval( () => {
       if (video1ON) {
-        var str = new String(video1.currentTime);
+        var str = new String(videocentral.currentTime);
         var pos = str.indexOf(".");
-        reloj.innerHTML = str.slice(0,pos);
+        str = str.slice(0,pos);
+        cronometro(str,min);
       } else if (video2ON) {
-        var str = new String(video2.currentTime);
+        var str = new String(videocentral.currentTime);
         var pos = str.indexOf(".");
-        reloj.innerHTML = str.slice(0,pos);
+        str = str.slice(0,pos);
+        cronometro(str,min);
       } else if (video3ON) {
-        var str = new String(video3.currentTime);
+        var str = new String(videocentral.currentTime);
         var pos = str.indexOf(".");
-        reloj.innerHTML = str.slice(0,pos);
+        str = str.slice(0,pos);
+        cronometro(str,min);
       }
+      min = 0;
     }, 100)
   }
 
