@@ -26,6 +26,10 @@ function main ()
   video2ON = false;
   video3ON = false;
 
+  inicio1ON = false;
+  inicio2ON = false;
+  inicio3ON = false;
+
   final1ON = false;
   final2ON = false;
   final3ON = false;
@@ -48,12 +52,12 @@ function main ()
   }
 
   function mostrarbotones() {
-    botoninicio1.style.display = 'block';
-    botoninicio2.style.display = 'block';
-    botoninicio3.style.display = 'block';
-    botonfinal1.style.display = 'block';
-    botonfinal2.style.display = 'block';
-    botonfinal3.style.display = 'block';
+    botoninicio1.style.display = '';
+    botoninicio2.style.display = '';
+    botoninicio3.style.display = '';
+    botonfinal1.style.display = '';
+    botonfinal2.style.display = '';
+    botonfinal3.style.display = '';
     textoinicio.innerHTML = 'SELECCIONE INICIO DEL BUCLE';
     textofinal.innerHTML = 'SELECCIONE FINAL DEL BUCLE';
   }
@@ -105,22 +109,10 @@ function main ()
   }
 
   videocentral.onmouseover = () => {
-    if (video1ON) {
-      video1.muted = false;
-    } else if (video2ON) {
-      video2.muted = false;
-    } else if (video3ON) {
-      video3.muted = false;
-    }
+    videocentral.muted = false;
   }
   videocentral.onmouseout = () => {
-    if (video1ON) {
-      video1.muted = true;
-    } else if (video2ON) {
-      video2.muted = true;
-    } else if (video3ON) {
-      video3.muted = true;
-    }
+    videocentral.muted = true;
   }
 
 
@@ -134,6 +126,9 @@ function main ()
     } else {
       videocentral.loop = false;
       bucle = false;
+      inicio1ON = false;
+      inicio2ON = false;
+      inicio3ON = false;
       final1ON = false;
       final2ON = false;
       final3ON = false;
@@ -143,22 +138,46 @@ function main ()
   }
     botoninicio1.onclick = () => {
       if (bucle) {
-        videocentral.currentTime = 5;
+        inicio1ON = true;
+        inicio2ON = false;
+        inicio3ON = false;
+      }
+    }
+
+    botoninicio2.onclick = () => {
+      if (bucle) {
+        inicio1ON = false;
+        inicio2ON = true;
+        inicio3ON = false;
+      }
+    }
+
+    botoninicio3.onclick = () => {
+      if (bucle) {
+        inicio1ON = false;
+        inicio2ON = false;
+        inicio3ON = true;
       }
     }
 
     botonfinal1.onclick = () => {
       if (bucle) {
         final1ON = true;
+        final2ON = false;
+        final3ON = false;
       }
     }
     botonfinal2.onclick = () => {
       if (bucle) {
+        final1ON = false;
         final2ON = true;
+        final3ON = false;
       }
     }
     botonfinal3.onclick = () => {
       if (bucle) {
+        final1ON = false;
+        final2ON = false;
         final3ON = true;
       }
     }
@@ -223,6 +242,18 @@ function main ()
     }
   }
 
+  function reset() {
+    if (inicio1ON) {
+      videocentral.currentTime = 5;
+    } else if (inicio2ON) {
+      videocentral.currentTime = 10;
+    } else if (inicio3ON) {
+      videocentral.currentTime = 15;
+    } else {
+      videocentral.currentTime = 0;
+    }
+  }
+
   ocultarbotones();
 
   if (!timer) {
@@ -245,11 +276,11 @@ function main ()
         cronometro(str,min);
       }
       if (final1ON && videocentral.currentTime >= 25) {
-        videocentral.currentTime = 0;
+        reset();
       } else if (final2ON && videocentral.currentTime >= 30) {
-        videocentral.currentTime = 0;
+        reset();
       } else if (final3ON && videocentral.currentTime >= 35) {
-        videocentral.currentTime = 0;
+        reset();
       }
       min = 0;
     }, 100)
