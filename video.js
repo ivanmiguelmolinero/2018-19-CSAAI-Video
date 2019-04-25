@@ -86,7 +86,7 @@ function main ()
   }
 
   video2.onclick = () => {
-    videocentral.src = "mivideo.mp4";
+    videocentral.src = "trailersw9.mp4";
     videocentral.currentTime = video2.currentTime;
     video1ON = false;
     video2ON = true;

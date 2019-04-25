@@ -1,3 +1,8 @@
+body{
+  background-image: url("wallpaper.jpg");
+  background-attachment: fixed;
+}
+
 .videoarriba {
   height: 286px;
   width: 450px;
@@ -6,18 +11,13 @@
 
 .videoarriba:hover {
   border-style: dashed;
+  border-color: lightblue;
 }
 
 #videocentral {
   margin-left: 300px;
   height: 572px;
   width: 900px;
-}
-
-#reloj {
-  text-align: center;
-  border-style: outset;
-  border-color: lightblue;
 }
 
 button {
@@ -51,6 +51,13 @@ button {
 
 p {
   text-align: center;
+  border-style: groove;
+  border-radius: 1000px;
+  border-bottom-color: red;
+  border-top-color: blue;
+  background-color: gray;
+  margin-left: 500px;
+  margin-right: 500px;
 }
 
 button:hover {
